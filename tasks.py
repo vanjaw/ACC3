@@ -10,11 +10,14 @@ app = Celery('tasks', broker='pyamqp://guest@localhost//')
 @appFlask.route('/jsoncount', methods=['GET'])
 def js():
     data = []
+    count = 0
     for filename in os.listdir('data'):
-        with open (filename, 'r') as f:
-            for line in f:
-                if line not in ['\n', '\r\n']:
-                    data.append(json.loads(line))
+	while count < 10:
+		with open ("data/" + filename, 'r') as f:
+       		count +=1
+		for line in f:
+                	if line not in ['\n', '\r\n']:
+                      	data.append(json.loads(line))
     hencount = 0
     hancount = 0
     honcount = 0

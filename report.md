@@ -35,7 +35,7 @@ As you can see in my code there are a few lines in the beginning that are commen
 ![Result](Sresult.png)
 
 ## Vizualization
-Here is a barchart shoiwng the occurences of the different words and the number of unique tweets counted.
+Here is a barchart showing the occurences of the different words and the number of unique tweets counted.
 ![Barchart](SRbarchart.png)
 
 This bar chart shows the same occurences of words normalized by the numer of tweets.

@@ -1,6 +1,7 @@
 from celery import Celery
 from flask import Flask, jsonify
 import json
+import os
 
 appFlask = Flask(__name__)
 
@@ -9,10 +10,11 @@ app = Celery('tasks', broker='pyamqp://guest@localhost//')
 @appFlask.route('/jsoncount', methods=['GET'])
 def js():
     data = []
-    with open ('6e72a55b-6b6a-4958-9128-a54f58df58eb', 'r') as f:
-        for line in f:
-            if line not in ['\n', '\r\n']:
-                data.append(json.loads(line))
+    for filename in os.listdir('data'):
+        with open (filename, 'r') as f:
+            for line in f:
+                if line not in ['\n', '\r\n']:
+                    data.append(json.loads(line))
     hencount = 0
     hancount = 0
     honcount = 0

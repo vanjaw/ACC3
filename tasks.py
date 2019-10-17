@@ -10,7 +10,7 @@ app = Celery('tasks', backend='rpc://', broker='pyamqp://guest@localhost//')
 @appFlask.route('/jsoncount', methods=['GET'])
 def jsoncount():
     result = pronounCount.delay()
-    while(not result.ready()):
+    while not result.ready():
         pass 
     return result.get()
 

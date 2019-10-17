@@ -1,7 +1,34 @@
 # Report ACC lab3
 
 ## Design
+I started out with creating a new instance of Ubuntu 16.04. 
+All code (seen under the section "code" further down) is written in a file called tasks.py.
 
+I installed celery and RabbitMQ:
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install python-pip 
+sudo apt-get install rabbitmq-server
+pip install celery
+```
+From one terminal window I ran celery with:
+```
+celery -A tasks worker --loglevel=info
+```
+From another I ran Flask with:
+```
+python3 tasks.py
+```
+In my third window I made the REST-api call:
+```
+curl -i http://130.238.28.95:5000/jsoncount
+```
+The result can be seen in the next section.
+
+As you can see in the code-section I only used 25 of the JSON-documents because if I used all of them the server didn't respond.
+I'm also aware that currently I am only using the Flask and not celery. 
+As you can see in my code there are a few lines in the beginning that are commented away. If I uncomment these lines Celery would be used. The problem for me was that I didn't recieve any results from Celery when trying. I've done my best to figure out how to solve this but sadly, I haven't had enough time. 
 
 ## Rest-api call
 ![Result](Sresult.png)

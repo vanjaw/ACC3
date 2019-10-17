@@ -3,23 +3,22 @@ from flask import Flask, jsonify
 import json
 import os
 
-appFlask = Flask(__name__)
-
+flask = Flask(__name__)
 app = Celery('tasks', backend='rpc://', broker='pyamqp://guest@localhost//')
 
-@appFlask.route('/jsoncount', methods=['GET'])
-def jsoncount():
-    result = pronounCount.delay()
-    while(not result.ready()):
-        pass 
-    return result.get()
+@flask.route('/jsoncount', methods=['GET'])
+#def jsoncount():
+#    result = pronounCount.delay()
+#    while not result.ready():
+#        pass 
+#    return result.get()
 
-@app.task
+#@app.task
 def pronounCount():
     data = []
     count = 0
     for filename in os.listdir('data'):
-        if count < 10:
+        if count < 25:
             with open ('data/'+ filename, 'r') as f:
                 count += 1
                 for line in f:
@@ -57,10 +56,7 @@ def pronounCount():
            ", \"nrOfTweets\":"  + str(count) + "}")
 
 
-@app.task
-def add(x, y):
-    return x + y
 
 if __name__ == '__main__':
     
-    appFlask.run(host='0.0.0.0',debug=True)
+    flask.run(host='0.0.0.0',debug=True)

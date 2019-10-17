@@ -8,11 +8,11 @@ app = Celery('tasks', broker='pyamqp://guest@localhost//')
 
 @appFlask.route('/test', methods=['GET'])
 def a():
-    return 4 
+    return "resultat" 
 
-#@app.task
-#def add(x, y):
-#    return x + y
+@app.task
+def add(x, y):
+    return x + y
 
 #@app.task
 #def readJSON():

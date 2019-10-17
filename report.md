@@ -1,6 +1,7 @@
 # Report ACC lab3
 
 ## Design
+![Result](Sresult.png)
 
 ## Rest-api call
 displaying e.g. a screenshot of the REST API call showing the returned result. 

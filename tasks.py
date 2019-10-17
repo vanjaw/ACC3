@@ -11,10 +11,10 @@ app = Celery('tasks', broker='pyamqp://guest@localhost//')
 def js():
     data = []
     for filename in os.listdir('data'):
-        with open ("data/" + filename, 'r') as f:
-	        for line in f:
-	            if line not in ['\n', '\r\n']:
-		        data.append(json.loads(line))
+        with open ('data/'+ filename, 'r') as f:
+            for line in f:
+                if line not in ['\n', '\r\n']:
+                    data.append(json.loads(line))
     hencount = 0
     hancount = 0
     honcount = 0
@@ -45,7 +45,7 @@ def js():
            ", \"denne\": " + str(dennecount) +
            ", \"denna\": " + str(dennacount) +
            ", \"nrOfTweets\":"  + str(count) + "}")
-    return 4 
+
 
 @app.task
 def add(x, y):

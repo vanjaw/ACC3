@@ -1,9 +1,9 @@
 # Report ACC lab3
 
 ## Design
-I started out with creating a new instance of Ubuntu 16.04.
-
 All code (seen under the section "code" further down) is written in a file called tasks.py, which I will come back to later.
+
+I started out with creating a new instance of Ubuntu 16.04.
 
 I installed celery and RabbitMQ:
 ```

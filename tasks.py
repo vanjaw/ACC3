@@ -14,10 +14,10 @@ def js():
     for filename in os.listdir('data'):
         while count < 10:
 	    with open ("data/" + filename, 'r') as f:
-       	        count +=1
-		for line in f:
-		    if line not in ['\n', '\r\n']:
-                    data.append(json.loads(line))
+	    count +=1
+	    for line in f:
+	        if line not in ['\n', '\r\n']:
+		    data.append(json.loads(line))
     hencount = 0
     hancount = 0
     honcount = 0

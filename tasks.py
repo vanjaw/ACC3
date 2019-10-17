@@ -12,7 +12,7 @@ def js():
     data = []
     count = 0
     for filename in os.listdir('data'):
-        if count > 10:
+        if count < 10:
             with open ('data/'+ filename, 'r') as f:
                 count += 1
                 for line in f:

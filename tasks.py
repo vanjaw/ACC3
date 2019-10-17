@@ -5,10 +5,17 @@ import os
 
 appFlask = Flask(__name__)
 
-app = Celery('tasks', broker='pyamqp://guest@localhost//')
+app = Celery('tasks', backend='rpc://', broker='pyamqp://guest@localhost//')
 
 @appFlask.route('/jsoncount', methods=['GET'])
-def js():
+def jsoncount():
+    result = pronounCount.delay()
+    while(not result.ready()):
+        pass 
+    return result.get()
+
+@app.task
+def pronounCount():
     data = []
     count = 0
     for filename in os.listdir('data'):
@@ -53,12 +60,6 @@ def js():
 @app.task
 def add(x, y):
     return x + y
-
-#@app.task
-#def readJSON():
-#    with open('json.txt') as json_file:
-#    	data = json.load(json_file)
-#    	return data['id']
 
 if __name__ == '__main__':
     
